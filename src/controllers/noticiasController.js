@@ -2,7 +2,13 @@ import noticias from "../models/Noticia.js";
 
 class NoticiaController {
     static listarNoticias = (req, res) => {
-        noticias.find()
+        const {categoria, titulo} = req.query;
+        const filtros = {
+            ...(categoria && {categoria:  categoria}),
+            ...(titulo && {titulo:  titulo})
+        };
+        console.log(filtros);
+        noticias.find(filtros)
             .populate('autor')
             .exec((err, noticias) => {
             res.status(200).json(noticias);
@@ -56,6 +62,7 @@ class NoticiaController {
             }
         })
     }
+
 }
 
 export default NoticiaController;

@@ -6,7 +6,7 @@ const noticiaSchema = new mongoose.Schema(
        titulo: {type: String, required: true},
        categoria: {type: String, required: true},
        conteudo: {type: String, required: true},
-       //dataCriacao: {type: Date()} 
+       dataCriacao: {type: Date, default: Date.now} 
     },
     {
         versionKey: false
