@@ -2,10 +2,11 @@ import noticias from "../models/Noticia.js";
 
 class NoticiaController {
     static listarNoticias = (req, res) => {
-        const {categoria, titulo} = req.query;
+        const {categoria, titulo, dataCriacao} = req.query;
         const filtros = {
             ...(categoria && {categoria:  categoria}),
-            ...(titulo && {titulo:  titulo})
+            ...(titulo && {titulo:  titulo}),
+            ...(dataCriacao && {dataCriacao: dataCriacao})
         };
         console.log(filtros);
         noticias.find(filtros)
